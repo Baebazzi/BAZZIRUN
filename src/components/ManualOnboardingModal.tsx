@@ -290,9 +290,9 @@ export const ManualOnboardingModal: React.FC<ManualOnboardingModalProps> = ({
                   <Sparkles className="w-4 h-4 text-sky-600" />
                 </div>
                 <div>
-                  <h4 className="font-black text-slate-900 text-sm">3. 주간 & 월간 목표 달성 및 폭죽 이벤트</h4>
+                  <h4 className="font-black text-slate-900 text-sm">3. 주간 & 월간 목표 관리</h4>
                   <p className="text-slate-600 mt-0.5 leading-relaxed">
-                    상단 이번 달 목표 마일리지(예: 200km)를 달성하는 순간, 화면 전체에 폭죽 애니메이션이 터지며 축하 메시지 팝업이 나타납니다!
+                    상단 헤더의 주간 및 월간 목표 마일리지(예: 200km)를 설정하여 달성률을 실시간 프로그래스 바로 확인하실 수 있습니다.
                   </p>
                 </div>
               </div>
@@ -304,7 +304,7 @@ export const ManualOnboardingModal: React.FC<ManualOnboardingModalProps> = ({
                 <div>
                   <h4 className="font-black text-slate-900 text-sm">4. 일요일 부상 예방 자가진단</h4>
                   <p className="text-slate-600 mt-0.5 leading-relaxed">
-                    매주 일요일 자가진단 배지를 클릭하여 아킬레스건, 무릎, 발바닥 피로도를 점검하고 다음 주 한 주를 준비하세요.
+                    매주 일요일 자가진단 배지를 클릭하여 전반적인 피로도와 컨디션을 점검하고 다음 주 한 주를 준비하세요.
                   </p>
                 </div>
               </div>
