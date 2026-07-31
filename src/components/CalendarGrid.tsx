@@ -181,11 +181,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           {weekDayLabels.map((dayLabel, idx) => (
             <div
               key={dayLabel}
-              className={`py-3 text-xs sm:text-sm font-extrabold tracking-wider ${
+              className={`py-2.5 sm:py-3 text-[11px] sm:text-sm font-extrabold tracking-wider ${
                 idx === 6 ? 'text-rose-600' : idx === 5 ? 'text-indigo-600' : 'text-slate-700'
               }`}
             >
-              {dayLabel}
+              <span className="hidden sm:inline">{dayLabel}</span>
+              <span className="sm:hidden">{dayLabel.slice(0, 1)}</span>
             </div>
           ))}
         </div>
@@ -208,24 +209,24 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             return (
               <div key={`week-row-${weekIdx}`} className="bg-slate-50/30">
                 {/* Weekly Progress Gauge Bar */}
-                <div className="bg-slate-900 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-inner">
-                  <div className="flex items-center space-x-3">
-                    <span className="bg-blue-500/20 text-blue-300 border border-blue-400/30 font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-xl flex items-center space-x-1.5 shadow-xs">
+                <div className="bg-slate-900 text-white px-2.5 sm:px-4 py-2.5 flex flex-wrap items-center justify-between gap-2.5 shadow-inner">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <span className="bg-blue-500/20 text-blue-300 border border-blue-400/30 font-mono text-xs font-extrabold px-2 py-0.5 rounded-xl flex items-center space-x-1 shadow-xs shrink-0">
                       <Sparkles className="w-3.5 h-3.5 text-sky-300" />
                       <span>{weekIdx + 1}주차</span>
                     </span>
-                    <div className="text-xs font-bold text-slate-200 flex items-center space-x-2">
+                    <div className="text-xs font-bold text-slate-200 flex items-center space-x-1.5 flex-wrap">
                       <span>
                         주간: <span className="text-sky-300 font-extrabold">{stats.totalDistance} km</span> / {targetKm} km
                       </span>
-                      <span className="text-slate-600">|</span>
-                      <span className="text-slate-300 text-xs">
+                      <span className="text-slate-600 hidden sm:inline">|</span>
+                      <span className="text-slate-300 text-xs hidden sm:inline">
                         러닝 {stats.runningSessions}회 ({stats.totalDurationHours}시간)
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2.5 flex-1 max-w-xs">
+                  <div className="flex items-center space-x-2 flex-1 max-w-xs min-w-[140px]">
                     <div className="flex-1 bg-slate-800 h-2.5 rounded-full overflow-hidden border border-slate-700/80 p-0.5">
                       <div
                         className={`h-full rounded-full transition-all duration-700 ${
@@ -236,12 +237,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                         style={{ width: `${progressPercent}%` }}
                       />
                     </div>
-                    <span className="text-xs font-mono font-black text-sky-300 min-w-[40px] text-right">
+                    <span className="text-xs font-mono font-black text-sky-300 min-w-[35px] text-right">
                       {progressPercent}%
                     </span>
                     <button
                       onClick={() => onOpenWeeklyGoalModal(mondayDateStr)}
-                      className="px-2 py-0.5 text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition active:scale-95"
+                      className="px-2 py-0.5 text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition active:scale-95 shrink-0"
                       title="주간 목표 수정"
                     >
                       수정
@@ -266,7 +267,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                       <div
                         key={dateStr}
                         onClick={() => setSelectedDate(dateStr)}
-                        className={`min-h-[165px] sm:min-h-[185px] p-2 relative flex flex-col justify-start transition-all w-full max-w-full min-w-0 overflow-hidden box-border ${
+                        className={`min-h-[145px] sm:min-h-[185px] p-1 sm:p-2 relative flex flex-col justify-start transition-all w-full max-w-full min-w-0 overflow-hidden box-border ${
                           dayObj.isCurrentMonth ? 'bg-white' : 'bg-slate-100/50 opacity-40'
                         } ${isToday ? 'ring-2 ring-blue-600 ring-inset bg-blue-50/20' : ''} ${
                           selectedDate === dateStr && !isToday ? 'bg-slate-50' : ''
@@ -274,23 +275,24 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                       >
                         {/* Day Cell Header: Action Buttons & Date Number */}
                         <div className="w-full max-w-full min-w-0">
-                          <div className="flex items-center justify-between mb-1.5 gap-1 w-full">
+                          <div className="flex items-center justify-between mb-1 gap-0.5 w-full">
                             {/* Left Button: 훈련 기재 */}
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
                                 onOpenWorkoutModal(dateStr);
                               }}
-                              className="px-1.5 py-0.5 rounded-md text-[11px] font-black bg-slate-900 hover:bg-blue-600 text-white transition flex items-center space-x-0.5 shadow-2xs active:scale-95 shrink-0"
+                              className="px-1 sm:px-1.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-black bg-slate-900 hover:bg-blue-600 text-white transition flex items-center justify-center space-x-0.5 shadow-2xs active:scale-95 shrink-0"
                               title="오늘의 훈련 기재"
                             >
                               <Plus className="w-2.5 h-2.5 stroke-[3]" />
-                              <span>훈련</span>
+                              <span className="hidden sm:inline">훈련</span>
+                              <span className="sm:hidden font-mono text-[9px] font-extrabold">⚡</span>
                             </button>
 
                             {/* Date Number Display */}
                             <span
-                              className={`font-sans text-xs font-black px-1.5 py-0.5 rounded-md text-center shrink-0 ${
+                              className={`font-sans text-[11px] sm:text-xs font-black px-1 sm:px-1.5 py-0.5 rounded-md text-center shrink-0 ${
                                 isToday
                                   ? 'bg-blue-600 text-white shadow-xs font-extrabold'
                                   : dayObj.dayOfWeek === 0
@@ -309,11 +311,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                                 e.stopPropagation();
                                 onOpenScheduleModal(dateStr);
                               }}
-                              className="px-1.5 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition flex items-center space-x-0.5 active:scale-95 shrink-0"
+                              className="px-1 sm:px-1.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition flex items-center justify-center space-x-0.5 active:scale-95 shrink-0"
                               title="일반 스케쥴링"
                             >
                               <Plus className="w-2.5 h-2.5 text-slate-500" />
-                              <span>일정</span>
+                              <span className="hidden sm:inline">일정</span>
+                              <span className="sm:hidden font-mono text-[9px] font-bold">📅</span>
                             </button>
                           </div>
 

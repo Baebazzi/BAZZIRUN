@@ -28,8 +28,28 @@ import { WeeklyGoalModal } from './components/WeeklyGoalModal';
 import { MonthlyGoalModal } from './components/MonthlyGoalModal';
 import { SundayDiagnosticModal } from './components/SundayDiagnosticModal';
 import { GoalAchievementModal } from './components/GoalAchievementModal';
+import { ManualOnboardingModal } from './components/ManualOnboardingModal';
 
 export default function App() {
+  // User Name & First-Time Onboarding State
+  const [userName, setUserName] = useState<string>(() => {
+    return localStorage.getItem('stride_user_name') || '';
+  });
+
+  const [isFirstVisit] = useState<boolean>(() => {
+    return localStorage.getItem('stride_onboarding_completed') !== 'true';
+  });
+
+  const [isManualModalOpen, setIsManualModalOpen] = useState<boolean>(() => {
+    return localStorage.getItem('stride_onboarding_completed') !== 'true';
+  });
+
+  const handleSaveUserName = (name: string) => {
+    setUserName(name);
+    localStorage.setItem('stride_user_name', name);
+    localStorage.setItem('stride_onboarding_completed', 'true');
+  };
+
   // Sport Mode (Initial setup & toggle: 러닝 모드 vs 하이브리드 모드)
   const [sportMode, setSportMode] = useState<SportMode>(() => {
     const saved = localStorage.getItem('stride_sport_mode');
@@ -368,6 +388,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-100/70 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white pb-12">
       {/* Header */}
       <Header
+        userName={userName}
         sportMode={sportMode}
         onChangeSportMode={setSportMode}
         monthlyGoal={monthlyGoals[currentYMStr]}
@@ -375,7 +396,7 @@ export default function App() {
         onOpenMonthlyGoalModal={handleOpenMonthlyGoalModal}
         onOpenWeeklyGoalModal={() => handleOpenWeeklyGoalModal()}
         onOpenSundayDiagnosticModal={() => handleOpenSundayDiagnosticModal()}
-        onOpenGoalCelebrationModal={() => setIsGoalCelebrationModalOpen(true)}
+        onOpenManualModal={() => setIsManualModalOpen(true)}
         onExportData={handleExportData}
         onImportData={handleImportData}
         onResetData={handleResetData}
@@ -455,6 +476,14 @@ export default function App() {
         targetMileage={targetKm}
         yearMonthString={currentYMStr}
         onClose={() => setIsGoalCelebrationModalOpen(false)}
+      />
+
+      <ManualOnboardingModal
+        isOpen={isManualModalOpen}
+        userName={userName}
+        onSaveUserName={handleSaveUserName}
+        onClose={() => setIsManualModalOpen(false)}
+        isFirstVisit={isFirstVisit}
       />
     </div>
   );

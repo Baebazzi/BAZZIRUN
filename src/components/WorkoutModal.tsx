@@ -502,33 +502,8 @@ export const WorkoutModal: React.FC<WorkoutModalProps> = ({
 
                   {/* Distance Select */}
                   <div>
-                    <div className="flex flex-wrap items-center justify-between mb-1.5 gap-1">
+                    <div className="mb-1.5">
                       <span className="text-[11px] font-extrabold text-slate-700">🏃 거리 (Distance)</span>
-                      {/* Quick Distance Presets */}
-                      <div className="flex flex-wrap items-center gap-1">
-                        {[
-                          { label: '5k', int: '5', dec: '0' },
-                          { label: '10k', int: '10', dec: '0' },
-                          { label: '21.1k', int: '21', dec: '0.0975' },
-                          { label: '42.2k', int: '42', dec: '0.195' },
-                          { label: '50k', int: '50', dec: '0' },
-                          { label: '100k', int: '100', dec: '0' },
-                          { label: '160k (100mi)', int: '160', dec: '0' },
-                          { label: '500k', int: '500', dec: '0' },
-                        ].map((preset) => (
-                          <button
-                            key={preset.label}
-                            type="button"
-                            onClick={() => {
-                              setDistKmInt(preset.int);
-                              setDistKmDec(preset.dec);
-                            }}
-                            className="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-white hover:bg-blue-100 text-slate-700 hover:text-blue-700 border border-slate-200 transition"
-                          >
-                            {preset.label}
-                          </button>
-                        ))}
-                      </div>
                     </div>
 
                     <div className="flex items-center space-x-2">
@@ -785,7 +760,7 @@ export const WorkoutModal: React.FC<WorkoutModalProps> = ({
                         onChange={(e) => setIntervalSets(e.target.value)}
                         className="w-full bg-white border border-amber-200 rounded-xl px-2 py-2 text-slate-900 font-mono text-xs font-bold focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-xs"
                       >
-                        {Array.from({ length: 20 }, (_, i) => i + 1).map((s) => (
+                        {Array.from({ length: 40 }, (_, i) => i + 1).map((s) => (
                           <option key={s} value={s}>
                             {s}세트
                           </option>

@@ -10,9 +10,11 @@ import {
   Sparkles,
   Dumbbell,
   Settings,
+  BookOpen,
 } from 'lucide-react';
 
 interface HeaderProps {
+  userName: string;
   sportMode: SportMode;
   onChangeSportMode: (mode: SportMode) => void;
   monthlyGoal?: MonthlyGoal;
@@ -20,12 +22,14 @@ interface HeaderProps {
   onOpenMonthlyGoalModal: () => void;
   onOpenWeeklyGoalModal: () => void;
   onOpenSundayDiagnosticModal: () => void;
+  onOpenManualModal: () => void;
   onExportData: () => void;
   onImportData: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onResetData: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
+  userName,
   sportMode,
   onChangeSportMode,
   monthlyGoal,
@@ -33,6 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenMonthlyGoalModal,
   onOpenWeeklyGoalModal,
   onOpenSundayDiagnosticModal,
+  onOpenManualModal,
   onExportData,
   onImportData,
   onResetData,
@@ -50,7 +55,10 @@ export const Header: React.FC<HeaderProps> = ({
             <Zap className="w-4 h-4 fill-sky-400/20" />
           </div>
           <span className="text-xs sm:text-sm font-black tracking-tight text-slate-900 px-3 py-1 bg-slate-100/90 rounded-xl border border-slate-200/80 shadow-2xs">
-            {sportMode === 'RUNNING' ? '러닝 & 스케쥴 관리 달력' : '하이브리드 & 스케쥴 관리 달력'}
+            {userName ? (
+              <span className="text-sky-600 font-extrabold mr-1">{userName} 님의</span>
+            ) : null}
+            {sportMode === 'RUNNING' ? '러닝 & 스케쥴 달력' : '하이브리드 & 스케쥴 달력'}
           </span>
         </div>
 
@@ -110,6 +118,16 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Tools */}
         <div className="flex items-center space-x-2">
+          {/* Manual & Shortcut Guide Button */}
+          <button
+            onClick={onOpenManualModal}
+            className="px-2.5 py-1.5 rounded-xl text-xs font-black bg-slate-900 hover:bg-sky-600 text-white transition flex items-center space-x-1.5 shadow-xs active:scale-95 shrink-0"
+            title="사용 설명서 및 스마트폰 홈 화면 바로가기 추가 안내"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-sky-400" />
+            <span>설명서 / 바로가기</span>
+          </button>
+
           {/* Popups & Quick Tools Button Group */}
           <div className="hidden sm:flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200/80">
             <button
