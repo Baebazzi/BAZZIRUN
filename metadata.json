@@ -1,0 +1,6 @@
+{
+  "name": "STRIDE & HYBRID Calendar",
+  "description": "Personal high-performance training calendar and goal management for runners and hybrid athletes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

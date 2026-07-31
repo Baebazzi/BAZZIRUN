@@ -1,0 +1,22 @@
+{
+  "short_name": "러닝달력",
+  "name": "러닝 & 스케쥴 관리 달력",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192 128x128 64x64",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "display": "standalone",
+  "orientation": "portrait"
+}

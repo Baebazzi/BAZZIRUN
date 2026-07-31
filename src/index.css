@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Outfit", "Pretendard Variable", Pretendard, "Gothic A1", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Metallic Text Utility Classes */
+.text-metallic {
+  background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 40%, #9CA3AF 70%, #E5E7EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.text-metallic-lime {
+  background: linear-gradient(135deg, #EEFF88 0%, #CCFF00 50%, #99CC00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 2px 6px rgba(204, 255, 0, 0.3));
+}
+
+.text-metallic-cyan {
+  background: linear-gradient(135deg, #E0F7FA 0%, #00F0FF 50%, #00A8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 2px 6px rgba(0, 240, 255, 0.3));
+}
+
+/* Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1117;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 255, 0, 0.4);
+}
+
